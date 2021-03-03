@@ -1,4 +1,4 @@
-# yii2-multi-input
+# Yii2 Multi Input
 
 This allows you to manipulate a field which consist of a bunch of values separated by a symbols.
 In the example below we manipulate a list of addresses separated by semicolons.
