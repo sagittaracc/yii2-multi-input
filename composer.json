@@ -1,0 +1,10 @@
+{
+    "name": "sagittaracc/yii2-multi-input",
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "sagittaracc\\widgets\\": "components/",
+            "sagittaracc\\assets\\": "assets/"
+        }
+    }
+}
