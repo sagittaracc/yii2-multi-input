@@ -41,7 +41,7 @@ class SplitInput extends ActiveField {
   }
 
   private function addAnotherInputButton() {
-    return Html::button("Добавить", [
+    return Html::button("Add", [
       'class' => 'btn',
       'onclick' => "(function(self){
         var input = $(self).prev().clone();
