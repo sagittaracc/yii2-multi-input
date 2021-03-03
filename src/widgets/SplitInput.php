@@ -1,6 +1,6 @@
 <?php
 
-namespace sagittaracc\widgets;
+namespace sagittaracc\MultiInput\widgets;
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
