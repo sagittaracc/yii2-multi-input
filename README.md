@@ -8,6 +8,11 @@ There is a table in the database which stores stuff like this:
 |----|-----------------------------------------------------|
 | 1  | Moscow, Street 43;Moscow, Street 1;Moscow, Street 2 |
 
+## Install
+```
+composer require sagittaracc/yii2-multi-input
+```
+
 ![sagittaracc yii2 multi input](https://i.ibb.co/JtPRLzS/yii2-multi-input-01.png)
 
 ![sagittaracc yii2 multi input](https://i.ibb.co/pfNyPzL/yii2-multi-input-02.png)
