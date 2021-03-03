@@ -4,8 +4,7 @@
     "autoload": {
         "psr-4": {
             "sagittaracc\\MultiInput\\": "src/",
-            "sagittaracc\\MultiInput\\widgets\\": "src/widgets/",
-            "sagittaracc\\MultiInput\\assets\\": "src/assets/"
+            "sagittaracc\\MultiInput\\widgets\\": "src/widgets/"
         }
     }
 }
