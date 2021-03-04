@@ -42,7 +42,7 @@ class SplitInput extends ActiveField {
   }
 
   private function addAnotherInputButton() {
-    return Html::button("Add", [
+    return Html::button(Yii::t("app", "Add"), [
       'class' => 'btn',
       'onclick' => "(function(self){
         var input = $(self).prev().clone();
