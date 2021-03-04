@@ -6,6 +6,7 @@
       if ($(input).val())
         list.push($(input).val());
     });
-    $(this).parent().parent().find('input[type="hidden"]').val(list.join(separator));
+    var hiddenInput = $(this).parent().parent().find('input[type="hidden"]');
+    hiddenInput.val(list.join(separator[hiddenInput.attr("id")]));
   });
 })();
