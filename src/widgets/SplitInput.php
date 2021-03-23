@@ -18,7 +18,7 @@ class SplitInput extends ActiveField {
     $options = array_merge($this->inputOptions, $options);
 
     $this->id = array_key_exists('id', $options) ? $options['id'] : Html::getInputId($this->model, $this->attribute);
-	$this->form->getView()->registerJs('if (typeof separator === "undefined") separator = {}', View::POS_HEAD);
+    $this->form->getView()->registerJs('if (typeof separator === "undefined") separator = {}', View::POS_HEAD);
     $this->form->getView()->registerJs('separator["' . $this->id . '"] = "'. $this->separator .'"', View::POS_HEAD);
     $this->parts['{input}'] = Html::activeHiddenInput($this->model, $this->attribute, $options)
                             . $this->splitToInputs($options)
@@ -45,9 +45,11 @@ class SplitInput extends ActiveField {
     return Html::button(Yii::t("app", "Add"), [
       'class' => 'btn',
       'onclick' => "(function(self){
-        var input = $(self).prev().clone();
-        input.find('input').val('');
-        input.insertBefore($(self));
+        var p = $(self).prev().clone();
+        var input = p.find('input');
+        input.val('');
+        p.insertBefore($(self));
+        $(document).trigger('sagittaracc-split-input:add', input);
       })(this);"
     ]);
   }
