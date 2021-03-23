@@ -9,6 +9,7 @@ use yii\web\View;
 
 class SplitInput extends ActiveField {
   private $id;
+  private static $className = 'sagittaracc-split-input';
   private $separator;
 
   public function textSplitInput($options = [])
@@ -20,8 +21,7 @@ class SplitInput extends ActiveField {
     $this->id = array_key_exists('id', $options) ? $options['id'] : Html::getInputId($this->model, $this->attribute);
     $this->form->getView()->registerJs('if (typeof separator === "undefined") separator = {}', View::POS_HEAD);
     $this->form->getView()->registerJs('separator["' . $this->id . '"] = "'. $this->separator .'"', View::POS_HEAD);
-    $this->parts['{input}'] = Html::activeHiddenInput($this->model, $this->attribute, $options)
-                            . $this->splitToInputs($options)
+    $this->parts['{input}'] = $this->splitToInputs($options)
                             . $this->addAnotherInputButton();
 
     return $this;
@@ -30,12 +30,10 @@ class SplitInput extends ActiveField {
   private function splitToInputs($options) {
     $inputList = [];
     $valueList = explode($this->separator, $this->model->{$this->attribute});
-    $options['class'] .= ' sagittaracc-split-input';
+    Html::addCssClass($options, self::$className);
 
     foreach ($valueList as $value) {
-      $inputList[] = Html::beginTag("p")
-                   . Html::input('text', null, $value, $options)
-                   . Html::endTag("p");
+      $inputList[] = Html::activeTextInput($this->model, $this->attribute, array_merge($options, ['value' => $value]));
     }
 
     return implode('', $inputList);
@@ -45,11 +43,10 @@ class SplitInput extends ActiveField {
     return Html::button(\Yii::t("app", "Add"), [
       'class' => 'btn',
       'onclick' => "(function(self){
-        var p = $(self).prev().clone();
-        var input = p.find('input');
+        var input = $(self).prev().clone();
         input.val('');
-        p.insertBefore($(self));
-        $(document).trigger('sagittaracc-split-input:add', input);
+        input.insertBefore($(self));
+        $(document).trigger('".self::$className.":add', input);
       })(this);"
     ]);
   }
