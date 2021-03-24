@@ -50,13 +50,15 @@ $this->params['breadcrumbs'][] = $this->title;
 Model:
 
 ```php
+    use sagittaracc\MultiInput\components\AddressValidator;
+
     // ...
 
     public function rules()
     {
         return [
             ...,
-            [['address'], 'each', 'rule' => ['string']],
+            [['address'], AddressValidator::classname()],
         ];
     }
 
