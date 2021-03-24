@@ -57,7 +57,7 @@ Model:
     public function rules()
     {
         return [
-            ...,
+            // ...
             [['address'], SplitInputValidator::classname()],
         ];
     }
