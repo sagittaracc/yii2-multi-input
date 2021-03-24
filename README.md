@@ -19,6 +19,8 @@ composer require sagittaracc/yii2-multi-input
 
 ![sagittaracc yii2 multi input](https://i.ibb.co/5Rg2MCg/yii2-multi-input-03.png)
 
+View:
+
 ```php
 
 use yii\helpers\Html;
@@ -32,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'address')->textSplitInput(['separator' => ';']) ?>
+    <?= $form->field($model, 'address')->textSplitInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Ok', ['class' => 'btn btn-primary']) ?>
@@ -43,4 +45,28 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php SplitInputAsset::register($this); ?>
 </div>
 
+```
+
+Model:
+
+```php
+    // ...
+
+    public function rules()
+    {
+        return [
+            ...,
+            [['address'], 'each', 'rule' => ['string']],
+        ];
+    }
+
+    // ...
+
+    public function beforeSave($insert)
+    {
+      $this->address = implode(';', array_filter($this->address));
+      return parent::beforeSave($insert);
+    }
+
+    // ...
 ```
