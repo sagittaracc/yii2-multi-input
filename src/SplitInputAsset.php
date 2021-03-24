@@ -15,6 +15,7 @@ class SplitInputAsset extends AssetBundle
   public $sourcePath = '@yii2-multi-input';
 
   public $css = [
+    'css/split-input.css',
   ];
 
   public $js = [
