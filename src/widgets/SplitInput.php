@@ -8,19 +8,12 @@ use yii\widgets\ActiveField;
 use yii\web\View;
 
 class SplitInput extends ActiveField {
-  private $id;
   private static $className = 'sagittaracc-split-input';
-  private $separator;
 
   public function textSplitInput($options = [])
   {
-    $separatorByDefault = ';';
-    $this->separator = ArrayHelper::getValue($options, 'separator', $separatorByDefault);
     $options = array_merge($this->inputOptions, $options);
 
-    $this->id = array_key_exists('id', $options) ? $options['id'] : Html::getInputId($this->model, $this->attribute);
-    $this->form->getView()->registerJs('if (typeof separator === "undefined") separator = {}', View::POS_HEAD);
-    $this->form->getView()->registerJs('separator["' . $this->id . '"] = "'. $this->separator .'"', View::POS_HEAD);
     $this->parts['{input}'] = $this->splitToInputs($options)
                             . $this->addAnotherInputButton();
 
@@ -28,8 +21,11 @@ class SplitInput extends ActiveField {
   }
 
   private function splitToInputs($options) {
+    $separatorByDefault = ';';
+    $separator = ArrayHelper::getValue($options, 'separator', $separatorByDefault);
+
     $inputList = [];
-    $valueList = explode($this->separator, $this->model->{$this->attribute});
+    $valueList = explode($separator, $this->model->{$this->attribute});
     Html::addCssClass($options, self::$className);
     $name = isset($options['name']) ? $options['name'] : "{$this->model->formName()}[{$this->attribute}][]";
 
