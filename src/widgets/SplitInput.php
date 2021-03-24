@@ -26,6 +26,7 @@ class SplitInput extends ActiveField {
 
     $inputList = [];
     $valueList = is_string($this->model->{$this->attribute})
+              || is_null($this->model->{$this->attribute})
                   ? explode($separator, $this->model->{$this->attribute})
                   : $this->model->{$this->attribute};
     Html::addCssClass($options, self::$className);
