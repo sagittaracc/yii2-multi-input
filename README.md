@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 Model:
 
 ```php
-    use sagittaracc\MultiInput\components\AddressValidator;
+    use sagittaracc\MultiInput\components\SplitInputValidator;
 
     // ...
 
@@ -58,7 +58,7 @@ Model:
     {
         return [
             ...,
-            [['address'], AddressValidator::classname()],
+            [['address'], SplitInputValidator::classname()],
         ];
     }
 

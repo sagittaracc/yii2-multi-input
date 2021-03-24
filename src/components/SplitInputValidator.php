@@ -4,7 +4,7 @@ namespace sagittaracc\MultiInput\components;
 
 use yii\validators\Validator;
 
-class AddressValidator extends Validator
+class SplitInputValidator extends Validator
 {
   public function validateAttribute($model, $attribute)
   {
