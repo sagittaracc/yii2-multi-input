@@ -6,17 +6,30 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveField;
 
+/**
+ * Компонент разбиения строки на несколько полей
+ * 
+ * @author sagittaracc <sagittaracc@gmail.com>
+ */
 class SplitInput extends ActiveField
 {
+    /**
+     * @var string имя класса конечных input'ов
+     */
     public $className = 'sagittaracc-split-input';
-
+    /**
+     * @var sagittaracc\MultiInput\widgets\InputButton элемент кнопка "Добавить"
+     */
     private $inputButton;
-
+    /**
+     * Разбивает на несколько input'ов
+     * @param array $options настройки компонента
+     * @return self
+     */
     public function textSplitInput($options = [])
     {
         $options = array_merge($this->inputOptions, $options);
         $buttonOptions = isset($options['button']) ? $options['button'] : [];
-
         $this->inputButton = new InputButton($this, $buttonOptions);
 
         $this->parts['{input}'] =
@@ -25,7 +38,11 @@ class SplitInput extends ActiveField
 
         return $this;
     }
-
+    /**
+     * Возвращает html с разбивкой на набор input'ов
+     * @param array $options
+     * @return string
+     */
     private function splitToInputs($options)
     {
         $inputList = [];
@@ -42,7 +59,11 @@ class SplitInput extends ActiveField
 
         return implode('', $inputList);
     }
-
+    /**
+     * Получает список значений для набора input'ов
+     * @param string $separator
+     * @return array
+     */
     private function getValue($separator)
     {
         return is_string($this->model->{$this->attribute}) || is_null($this->model->{$this->attribute})
