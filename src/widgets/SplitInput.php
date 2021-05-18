@@ -8,7 +8,7 @@ use yii\widgets\ActiveField;
 
 class SplitInput extends ActiveField
 {
-    private $className = 'sagittaracc-split-input';
+    public $className = 'sagittaracc-split-input';
 
     private $inputButton;
 
