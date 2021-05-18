@@ -30,6 +30,7 @@ class SplitInput extends ActiveField {
                   ? explode($separator, $this->model->{$this->attribute})
                   : $this->model->{$this->attribute};
     Html::addCssClass($options, self::$className);
+    $options['data-model'] = $this->attribute;
     $name = isset($options['name']) ? $options['name'] : "{$this->model->formName()}[{$this->attribute}][]";
 
     foreach ($valueList as $value) {
