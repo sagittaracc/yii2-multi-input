@@ -10,8 +10,6 @@ class SplitInput extends ActiveField
 {
     private $className = 'sagittaracc-split-input';
 
-    private $options;
-
     private $inputButton;
 
     public function textSplitInput($options = [])
