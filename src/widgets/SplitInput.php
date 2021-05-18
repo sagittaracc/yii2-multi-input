@@ -41,7 +41,7 @@ class SplitInput extends ActiveField {
   }
 
   private function addAnotherInputButton($options) {
-    $id = isset($options['id']) ? $options['id'] : "{$this->attribute}-add-button";
+    $id = isset($options['button-id']) ? $options['button-id'] : "{$this->attribute}-add-button";
     $visibility = isset($options['button']) && $options['button'] === 'hidden' ? 'hidden' : 'visible';
 
     return Html::button(\Yii::t("app", "Add"), [
