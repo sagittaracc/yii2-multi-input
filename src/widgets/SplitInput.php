@@ -15,7 +15,7 @@ class SplitInput extends ActiveField {
     $options = array_merge($this->inputOptions, $options);
 
     $this->parts['{input}'] = $this->splitToInputs($options)
-                            . $this->addAnotherInputButton();
+                            . $this->addAnotherInputButton($options);
 
     return $this;
   }
@@ -40,8 +40,13 @@ class SplitInput extends ActiveField {
     return implode('', $inputList);
   }
 
-  private function addAnotherInputButton() {
+  private function addAnotherInputButton($options) {
+    $id = isset($options['id']) ? $options['id'] : "{$this->attribute}-add-button";
+    $visibility = isset($options['button']) && $options['button'] === 'hidden' ? 'hidden' : 'visible';
+
     return Html::button(\Yii::t("app", "Add"), [
+      'id' => $id,
+      'style' => "visibility: $visibility;",
       'class' => 'btn',
       'onclick' => "(function(self){
         var input = $(self).prev().clone();
